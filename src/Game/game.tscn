@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="3_3s8ir"]
 [ext_resource type="Texture2D" uid="uid://diai7x3jo5ujg" path="res://assets/part.png" id="5_7m6cs"]
 [ext_resource type="Texture2D" uid="uid://b0lssmd2hqmjg" path="res://assets/Basic_red_dot.png" id="7_le6wr"]
+[ext_resource type="Texture2D" uid="uid://bsm37hb8cctju" path="res://assets/cup-kun.png" id="8_lx5th"]
+[ext_resource type="Texture2D" uid="uid://k48ld5nua6t2" path="res://assets/restart.png" id="9_0qd4d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sag4g"]
 shader = ExtResource("1_k6qo2")
@@ -28,10 +30,10 @@ limit_bottom = 1200
 z_index = 1
 material = SubResource("ShaderMaterial_sag4g")
 position = Vector2(0, -2.2053719e-05)
-scale = Vector2(9.25, 10.3203125)
+scale = Vector2(5.5624995, 4.906251)
 texture = ExtResource("3_3s8ir")
 
-[node name="watarGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
+[node name="waterGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
 position = Vector2(115, 300)
 script = ExtResource("1_60cvd")
 tex = ExtResource("5_7m6cs")
@@ -40,6 +42,36 @@ spawnRad = 8.0
 [node name="GridMiddle" type="Marker2D" parent="." unique_id=2032995789]
 position = Vector2(325, 600)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridMiddle" unique_id=2074592103]
+[node name="Middle-check" type="Sprite2D" parent="GridMiddle" unique_id=2074592103]
 scale = Vector2(0.014545496, 0.014545436)
 texture = ExtResource("7_le6wr")
+
+[node name="Texto" type="Label" parent="." unique_id=1564578954]
+offset_left = 22.0
+offset_top = 1148.0
+offset_right = 194.0
+offset_bottom = 1171.0
+theme_override_font_sizes/font_size = 25
+text = "CAMBIOS RESTANTES: "
+
+[node name="Cambios" type="Label" parent="." unique_id=909930711]
+offset_left = 291.0
+offset_top = 1148.0
+offset_right = 307.0
+offset_bottom = 1183.0
+theme_override_font_sizes/font_size = 25
+text = "#"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006636006]
+position = Vector2(546.38635, 947)
+scale = Vector2(1.2272727, 1.2272727)
+texture = ExtResource("8_lx5th")
+
+[node name="Reiniciar" type="Button" parent="." unique_id=1953756339]
+offset_left = 589.0
+offset_top = 1139.0
+offset_right = 636.0
+offset_bottom = 1186.0
+icon = ExtResource("9_0qd4d")
+icon_alignment = 1
+expand_icon = true

@@ -24,6 +24,7 @@ scale = Vector2(0.46874997, 0.46874997)
 texture = ExtResource("1_mavef")
 
 [node name="Vacio" type="Sprite2D" parent="." unique_id=216537424]
+z_index = -5
 position = Vector2(29.999998, 29.999998)
 scale = Vector2(0.05859375, 0.058593746)
 texture = ExtResource("3_bxtca")
