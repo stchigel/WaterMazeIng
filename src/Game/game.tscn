@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://qrwsivekumip"]
+
+[ext_resource type="Script" uid="uid://crgsafuguldq1" path="res://script/waterGenerator.gd" id="1_60cvd"]
+[ext_resource type="Shader" uid="uid://bkhw3uhyhtv6g" path="res://script/waterEffect.gdshader" id="1_k6qo2"]
+[ext_resource type="Script" uid="uid://nk2kt741qrpc" path="res://src/Game/game.gd" id="1_sag4g"]
+[ext_resource type="PackedScene" uid="uid://co04ktpk0faq1" path="res://src/Cuadrado/cuadrado.tscn" id="2_7m6cs"]
+[ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="3_3s8ir"]
+[ext_resource type="Texture2D" uid="uid://diai7x3jo5ujg" path="res://assets/part.png" id="5_7m6cs"]
+[ext_resource type="Texture2D" uid="uid://b0lssmd2hqmjg" path="res://assets/Basic_red_dot.png" id="7_le6wr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sag4g"]
+shader = ExtResource("1_k6qo2")
+shader_parameter/TG_COLOR = Color(1, 0, 1, 1)
+shader_parameter/color_detect_threshold = 0.7
+
+[node name="Game" type="Node2D" unique_id=1928986223]
+script = ExtResource("1_sag4g")
+celda_scene = ExtResource("2_7m6cs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=473568838]
+position = Vector2(325, 600)
+limit_left = 0
+limit_top = 0
+limit_right = 650
+limit_bottom = 1200
+
+[node name="waterShader" type="Sprite2D" parent="Camera2D" unique_id=1035563274]
+z_index = 1
+material = SubResource("ShaderMaterial_sag4g")
+position = Vector2(0, -2.2053719e-05)
+scale = Vector2(9.25, 10.3203125)
+texture = ExtResource("3_3s8ir")
+
+[node name="watarGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
+position = Vector2(115, 300)
+script = ExtResource("1_60cvd")
+tex = ExtResource("5_7m6cs")
+spawnRad = 8.0
+
+[node name="GridMiddle" type="Marker2D" parent="." unique_id=2032995789]
+position = Vector2(325, 600)
+
+[node name="Sprite2D" type="Sprite2D" parent="GridMiddle" unique_id=2074592103]
+scale = Vector2(0.014545496, 0.014545436)
+texture = ExtResource("7_le6wr")
