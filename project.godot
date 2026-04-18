@@ -13,7 +13,6 @@ config_version=5
 config/name="WaterMazeIng"
 run/main_scene="res://src/Game/game.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 

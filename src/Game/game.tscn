@@ -6,14 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://co04ktpk0faq1" path="res://src/Cuadrado/cuadrado.tscn" id="2_7m6cs"]
 [ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="3_3s8ir"]
 [ext_resource type="Texture2D" uid="uid://diai7x3jo5ujg" path="res://assets/part.png" id="5_7m6cs"]
-[ext_resource type="Texture2D" uid="uid://b0lssmd2hqmjg" path="res://assets/Basic_red_dot.png" id="7_le6wr"]
 [ext_resource type="Texture2D" uid="uid://bsm37hb8cctju" path="res://assets/cup-kun.png" id="8_lx5th"]
 [ext_resource type="Texture2D" uid="uid://k48ld5nua6t2" path="res://assets/restart.png" id="9_0qd4d"]
+[ext_resource type="Texture2D" uid="uid://cxy3u83bmjcta" path="res://assets/waterdrop.png" id="10_mkl7w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sag4g"]
 shader = ExtResource("1_k6qo2")
 shader_parameter/TG_COLOR = Color(1, 0, 1, 1)
 shader_parameter/color_detect_threshold = 0.7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkl7w"]
+size = Vector2(62, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drysr"]
+size = Vector2(649, 20)
 
 [node name="Game" type="Node2D" unique_id=1928986223]
 script = ExtResource("1_sag4g")
@@ -34,17 +40,13 @@ scale = Vector2(5.5624995, 4.906251)
 texture = ExtResource("3_3s8ir")
 
 [node name="waterGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
-position = Vector2(115, 300)
+position = Vector2(115, 325)
 script = ExtResource("1_60cvd")
 tex = ExtResource("5_7m6cs")
 spawnRad = 8.0
 
 [node name="GridMiddle" type="Marker2D" parent="." unique_id=2032995789]
 position = Vector2(325, 600)
-
-[node name="Middle-check" type="Sprite2D" parent="GridMiddle" unique_id=2074592103]
-scale = Vector2(0.014545496, 0.014545436)
-texture = ExtResource("7_le6wr")
 
 [node name="Texto" type="Label" parent="." unique_id=1564578954]
 offset_left = 22.0
@@ -62,11 +64,6 @@ offset_bottom = 1183.0
 theme_override_font_sizes/font_size = 25
 text = "#"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006636006]
-position = Vector2(546.38635, 947)
-scale = Vector2(1.2272727, 1.2272727)
-texture = ExtResource("8_lx5th")
-
 [node name="Reiniciar" type="Button" parent="." unique_id=1953756339]
 offset_left = 589.0
 offset_top = 1139.0
@@ -75,3 +72,35 @@ offset_bottom = 1186.0
 icon = ExtResource("9_0qd4d")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Play" type="Button" parent="." unique_id=910907974]
+offset_left = 524.0
+offset_top = 1139.0
+offset_right = 571.0
+offset_bottom = 1186.0
+icon = ExtResource("10_mkl7w")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Timer" type="Timer" parent="." unique_id=795962182]
+
+[node name="Meta" type="Area2D" parent="." unique_id=1675497596]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meta" unique_id=974134088]
+position = Vector2(538, 927.5)
+shape = SubResource("RectangleShape2D_mkl7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Meta" unique_id=1006636006]
+position = Vector2(546.38635, 947)
+scale = Vector2(1.2272727, 1.2272727)
+texture = ExtResource("8_lx5th")
+
+[node name="Afuera" type="Area2D" parent="." unique_id=1442584917]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Afuera" unique_id=1372290806]
+position = Vector2(324.5, 999)
+shape = SubResource("RectangleShape2D_drysr")
+
+[connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="Play" to="waterGen" method="_on_play_pressed"]
+[connection signal="timeout" from="Timer" to="waterGen" method="_on_timer_timeout"]

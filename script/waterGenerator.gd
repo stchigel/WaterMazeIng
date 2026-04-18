@@ -7,6 +7,7 @@ var objects: Array[Array] = []
 var texSize: float = 48
 @onready var attrForce: float = get_parent().attrForce
 var distanciaAguas = 6480
+var dropping = false
 
 func _ready() -> void:
 	cir_shape.radius = 8
@@ -57,5 +58,20 @@ func _exit_tree():
 
 func _process(delta: float) -> void:
 	attrForce = get_parent().attrForce
-	if Input.is_action_pressed("ui_accept"):
+	if dropping:
 		create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
+
+func _on_play_pressed() -> void:
+	dropping=true
+	$"../Timer".start()
+
+func _on_timer_timeout() -> void:
+	dropping=false
+	
+func clear_water():
+	for pair in objects:
+		var object: RID = pair[0]
+		var img: RID = pair[1]
+		PhysicsServer2D.free_rid(object)
+		RenderingServer.free_rid(img)
+	objects.clear()

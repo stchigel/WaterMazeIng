@@ -4,8 +4,8 @@ extends Node2D
 @onready var anchor := $GridMiddle
 var pointer: bool = true
 var attrForce: float = 500
-var maxCambios = 5
-var cambiosActual = 5
+var maxCambios = 50
+var cambiosActual
 
 var mapa = [
 	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -49,3 +49,13 @@ func generar_grilla():
 				celda.activo = false
 			celda.position = Vector2(x * CELL_SIZE - half_size, y * CELL_SIZE - half_size)
 			anchor.add_child(celda)
+
+
+func _on_reiniciar_pressed() -> void:
+	$Reiniciar.disabled=true
+	cambiosActual=maxCambios
+	$Cambios.text=str(cambiosActual)
+	for child in anchor.get_children():
+		child.queue_free()
+	$waterGen.clear_water()
+	generar_grilla()
