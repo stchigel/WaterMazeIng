@@ -14,6 +14,10 @@ config/name="WaterMazeIng"
 run/main_scene="uid://bi8e4v3fh7f8g"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+Global="*uid://dh27hvi0chhvs"
+
 [display]
 
 window/size/viewport_width=650

@@ -1,10 +1,10 @@
 extends Node2D
 
 @export var celda_scene: PackedScene
-var nivelData: NivelData
 @onready var anchor := $GridMiddle
 var pointer: bool = true
 var attrForce: float = 500
+var cantAguaPorSegundo = 5
 
 var id: int
 var maxCambios: int
@@ -12,8 +12,10 @@ var mapa: Array[Array]
 var matrizSolucion: Array[Array]
 var cantAgua: float
 var cantPistas: int
+var nivelData: NivelData
 
 func asignar_variables():
+	nivelData = Global.nivelData
 	id=nivelData.id
 	maxCambios=nivelData.maxCambios
 	mapa=nivelData.mapa
@@ -23,6 +25,7 @@ func asignar_variables():
 
 var cambiosActual
 var pistasActual
+var aguaAcumulada
 
 func swapBloque():
 	if cambiosActual>0:
@@ -43,6 +46,7 @@ func _ready():
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	$Timer.wait_time=nivelData.cantAgua
+	aguaAcumulada=0
 	generar_grilla()
 
 func generar_grilla():
@@ -59,9 +63,18 @@ func generar_grilla():
 
 func _on_reiniciar_pressed() -> void:
 	$Reiniciar.disabled=true
+	$Play.disabled = false
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	for child in anchor.get_children():
 		child.queue_free()
 	$waterGen.clear_water()
 	generar_grilla()
+
+func acumular_agua():
+	aguaAcumulada+=1
+	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo):
+		for child in anchor.get_children():
+			child.queue_free()
+		$waterGen.clear_water()
+		get_tree().change_scene_to_file("res://src/Endscreen/endscreen.tscn")

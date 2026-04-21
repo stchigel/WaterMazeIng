@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://co04ktpk0faq1"]
 
 [ext_resource type="Script" uid="uid://cklsgxc23d0wr" path="res://src/Cuadrado/cuadrado.gd" id="1_cusas"]
-[ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="1_mavef"]
-[ext_resource type="Texture2D" uid="uid://ebbh4e6gpav2" path="res://assets/empty.png" id="3_bxtca"]
+[ext_resource type="Texture2D" uid="uid://dksgwwbd2u740" path="res://assets/ladrillo.webp" id="2_bxtca"]
+[ext_resource type="Texture2D" uid="uid://5kw7ght5etpd" path="res://assets/ladrillo2.webp" id="3_enu3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytqfn"]
 size = Vector2(60, 60)
@@ -20,14 +20,14 @@ shape = SubResource("RectangleShape2D_ytqfn")
 
 [node name="Lleno" type="Sprite2D" parent="." unique_id=1929518520]
 position = Vector2(29.999998, 29.999998)
-scale = Vector2(0.46874997, 0.46874997)
-texture = ExtResource("1_mavef")
+scale = Vector2(0.37499997, 0.37499997)
+texture = ExtResource("2_bxtca")
 
 [node name="Vacio" type="Sprite2D" parent="." unique_id=216537424]
 z_index = -5
 position = Vector2(29.999998, 29.999998)
-scale = Vector2(0.05859375, 0.058593746)
-texture = ExtResource("3_bxtca")
+scale = Vector2(0.375, 0.37499997)
+texture = ExtResource("3_enu3y")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=128857296]
 

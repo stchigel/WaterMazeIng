@@ -8,10 +8,20 @@ var texSize: float = 48
 @onready var attrForce: float = get_parent().attrForce
 var distanciaAguas = 6480
 var dropping = false
+var area_rid: RID
 
 func _ready() -> void:
 	cir_shape.radius = 8
 	cir_shape.custom_solver_bias = 0.1
+	var area_rid = $"../Meta".get_rid()
+	PhysicsServer2D.area_set_monitor_callback(area_rid, Callable(self, "_area_callback"))
+	
+
+func _area_callback(status, body_rid, instance_id, body_shape_idx, area_shape_idx):
+	if status == PhysicsServer2D.AREA_BODY_ADDED:
+		if instance_id == 0:
+			call_deferred("remove_object_by_rid", body_rid)
+			get_parent().acumular_agua()
 
 func create_object(pos: Vector2):
 	var ps := PhysicsServer2D
@@ -29,6 +39,9 @@ func create_object(pos: Vector2):
 	rs.canvas_item_set_parent(img, get_canvas_item())
 	rs.canvas_item_add_texture_rect(img, Rect2(texSize/-2, texSize/-2, texSize, texSize), tex)
 	rs.canvas_item_set_transform(img, trans)
+	
+	ps.body_set_collision_layer(object, 1)
+	ps.body_set_collision_mask(object, 1)
 
 	objects.append([object, img])
 
@@ -63,6 +76,7 @@ func _process(delta: float) -> void:
 
 func _on_play_pressed() -> void:
 	dropping=true
+	$"../Play".disabled = true
 	$"../Timer".start()
 
 func _on_timer_timeout() -> void:
@@ -75,3 +89,13 @@ func clear_water():
 		PhysicsServer2D.free_rid(object)
 		RenderingServer.free_rid(img)
 	objects.clear()
+
+func remove_object_by_rid(body_rid: RID) -> void:
+	for i in range(objects.size()):
+		if objects[i][0] == body_rid:
+			var object: RID = objects[i][0]
+			var img: RID = objects[i][1]
+			objects.remove_at(i)
+			PhysicsServer2D.free_rid(object)
+			RenderingServer.free_rid(img)
+			return
