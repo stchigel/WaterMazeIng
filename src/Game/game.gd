@@ -1,24 +1,28 @@
 extends Node2D
 
 @export var celda_scene: PackedScene
+var nivelData: NivelData
 @onready var anchor := $GridMiddle
 var pointer: bool = true
 var attrForce: float = 500
-var maxCambios = 50
-var cambiosActual
 
-var mapa = [
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 0, 1, 1, 1, 1]
-]
+var id: int
+var maxCambios: int
+var mapa: Array[Array]
+var matrizSolucion: Array[Array]
+var cantAgua: float
+var cantPistas: int
+
+func asignar_variables():
+	id=nivelData.id
+	maxCambios=nivelData.maxCambios
+	mapa=nivelData.mapa
+	matrizSolucion=nivelData.matrizSolucion
+	cantAgua=nivelData.cantAgua
+	cantPistas=nivelData.cantPistas
+
+var cambiosActual
+var pistasActual
 
 func swapBloque():
 	if cambiosActual>0:
@@ -34,9 +38,11 @@ const GRID_SIZE := 10
 const CELL_SIZE := 60
 
 func _ready():
+	asignar_variables()
 	$Reiniciar.disabled=true
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
+	$Timer.wait_time=nivelData.cantAgua
 	generar_grilla()
 
 func generar_grilla():

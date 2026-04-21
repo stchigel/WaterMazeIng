@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bi8e4v3fh7f8g"]
+
+[ext_resource type="Script" uid="uid://dkv5aadhy4s6s" path="res://src/Main/main.gd" id="1_k4pwg"]
+
+[node name="Main" type="Control" unique_id=881347497]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4pwg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=809296494]
+layout_mode = 0
+offset_right = 650.0
+offset_bottom = 1200.0
+color = Color(0, 0.12803975, 0.25299576, 1)
+
+[node name="Level 1" type="Button" parent="." unique_id=180210059]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 167.0
+offset_right = 129.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 50
+text = "1"
+
+[node name="Level 2" type="Button" parent="." unique_id=817883813]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 168.0
+offset_right = 226.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 50
+text = "2"
+
+[node name="Level 3" type="Button" parent="." unique_id=2004122673]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 168.0
+offset_right = 328.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 50
+text = "3"
+
+[node name="Level 4" type="Button" parent="." unique_id=1456321263]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 164.0
+offset_right = 423.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 50
+text = "4"
+
+[node name="Level 5" type="Button" parent="." unique_id=1923441511]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 168.0
+offset_right = 521.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="Level 6" type="Button" parent="." unique_id=56672797]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 172.0
+offset_right = 612.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 50
+text = "6"
+
+[connection signal="pressed" from="Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Level 3" to="." method="_on_level_3_pressed"]
