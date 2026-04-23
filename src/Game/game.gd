@@ -4,7 +4,8 @@ extends Node2D
 @onready var anchor := $GridMiddle
 var pointer: bool = true
 var attrForce: float = 500
-var cantAguaPorSegundo = 25
+var cantAguaPorSegundo = 60
+var cantAguaParaGanar = 0.5
 
 var id: int
 var maxCambios: int
@@ -44,7 +45,7 @@ func _ready():
 	asignar_variables()
 	$CountdownLabel.visible = false
 	$Reiniciar.disabled=true
-	$AguaRecibida.max_value = Global.nivelData.cantAgua*cantAguaPorSegundo
+	$AguaRecibida.max_value = cantAgua*cantAguaPorSegundo*cantAguaParaGanar
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	$Timer.wait_time=nivelData.cantAgua
@@ -75,6 +76,7 @@ func _on_reiniciar_pressed() -> void:
 	for child in anchor.get_children():
 		child.queue_free()
 	$waterGen.clear_water()
+	$waterGen.accumulator = 0
 	generar_grilla()
 
 func _process(delta: float) -> void:
@@ -84,7 +86,7 @@ func _process(delta: float) -> void:
 func acumular_agua():
 	aguaAcumulada+=1
 	$AguaRecibida.value += 1
-	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo):
+	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo*cantAguaParaGanar):
 		call_deferred("_finalizar")
 		#Acá usé call_deferred porque me salia error
 

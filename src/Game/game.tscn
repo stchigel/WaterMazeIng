@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qrwsivekumip"]
 
-[ext_resource type="Script" uid="uid://crgsafuguldq1" path="res://script/waterGenerator.gd" id="1_60cvd"]
-[ext_resource type="Shader" uid="uid://bkhw3uhyhtv6g" path="res://script/waterEffect.gdshader" id="1_k6qo2"]
+[ext_resource type="Script" uid="uid://crgsafuguldq1" path="res://scripts/waterGenerator.gd" id="1_60cvd"]
+[ext_resource type="Shader" uid="uid://bkhw3uhyhtv6g" path="res://shaders/waterEffect.gdshader" id="1_k6qo2"]
 [ext_resource type="Script" uid="uid://nk2kt741qrpc" path="res://src/Game/game.gd" id="1_sag4g"]
 [ext_resource type="PackedScene" uid="uid://co04ktpk0faq1" path="res://src/Cuadrado/cuadrado.tscn" id="2_7m6cs"]
 [ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="3_3s8ir"]
@@ -21,6 +21,12 @@ size = Vector2(62, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drysr"]
 size = Vector2(649, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qd4d"]
+size = Vector2(85, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysswf"]
+size = Vector2(606, 60)
+
 [node name="Game" type="Node2D" unique_id=1928986223]
 script = ExtResource("1_sag4g")
 celda_scene = ExtResource("2_7m6cs")
@@ -35,8 +41,8 @@ limit_bottom = 1200
 [node name="waterShader" type="Sprite2D" parent="Camera2D" unique_id=1035563274]
 z_index = 1
 material = SubResource("ShaderMaterial_sag4g")
-position = Vector2(0, -2.2053719e-05)
-scale = Vector2(5.5624995, 4.906251)
+position = Vector2(0, 4.5000024)
+scale = Vector2(5.5624995, 4.8359375)
 texture = ExtResource("3_3s8ir")
 
 [node name="waterGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
@@ -102,6 +108,14 @@ texture = ExtResource("8_lx5th")
 position = Vector2(324.5, 999)
 shape = SubResource("RectangleShape2D_drysr")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Afuera" unique_id=197429542]
+position = Vector2(41.5, 288)
+shape = SubResource("RectangleShape2D_0qd4d")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Afuera" unique_id=483028541]
+position = Vector2(188, 288)
+shape = SubResource("RectangleShape2D_0qd4d")
+
 [node name="Timer2" type="Timer" parent="." unique_id=1544255554]
 wait_time = 10.0
 one_shot = true
@@ -122,8 +136,16 @@ offset_top = 986.0
 offset_right = 635.0
 offset_bottom = 1013.0
 
+[node name="Cubo4" type="StaticBody2D" parent="." unique_id=903695127]
+position = Vector2(0, -60)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Cubo4" unique_id=1656116863]
+position = Vector2(328, 325.00003)
+shape = SubResource("RectangleShape2D_ysswf")
+
 [connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="Play" to="waterGen" method="_on_play_pressed"]
 [connection signal="timeout" from="Timer" to="waterGen" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Meta" to="waterGen" method="_on_meta_body_entered"]
+[connection signal="body_entered" from="Afuera" to="waterGen" method="_on_afuera_body_entered"]
 [connection signal="timeout" from="Timer2" to="waterGen" method="_on_timer_2_timeout"]

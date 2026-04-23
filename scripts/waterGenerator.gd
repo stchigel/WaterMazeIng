@@ -8,6 +8,8 @@ var texSize: float = 48
 var attrForce: float = 0.0
 var distanciaAguas = 6480
 var dropping = false
+var spawn_rate = 60
+var accumulator = 0.0
 
 
 func create_object(pos: Vector2) -> void:
@@ -53,10 +55,13 @@ func _physics_process(_delta: float) -> void:
 func _exit_tree() -> void:
 	clear_water()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	attrForce = get_parent().attrForce
 	if dropping:
-		create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
+		accumulator += delta * spawn_rate
+		while accumulator >= 1.0:
+			create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
+			accumulator -= 1.0
 
 func _on_play_pressed() -> void:
 	dropping = true
@@ -83,3 +88,9 @@ func _on_meta_body_entered(body: Node2D) -> void:
 		objects.erase(body)
 		body.queue_free()
 		get_parent().acumular_agua()
+
+
+func _on_afuera_body_entered(body: Node2D) -> void:
+	if body is RigidBody2D and objects.has(body):
+		objects.erase(body)
+		body.queue_free()

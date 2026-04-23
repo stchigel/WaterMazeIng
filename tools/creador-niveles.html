@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador Niveles 10x10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .grid input[type="checkbox"] {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 4px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 420px;
+            height: 220px;
+            margin-top: 15px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Creador Niveles 10x10</h2>
+
+    <div class="grid" id="grid"></div>
+
+    <div>
+        <button onclick="generateMatrix()">Generate Godot Matrix</button>
+        <button onclick="clearGrid()">Clear</button>
+        <button onclick="markAll()">Mark All</button>
+    </div>
+
+    <textarea id="output" placeholder="Matrix will appear here..."></textarea>
+
+    <script>
+        const grid = document.getElementById("grid");
+        let isMouseDown = false;
+        let drawValue = true;
+        const GRID_SIZE = 10;
+
+        // Create 10x10 grid
+        for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+                                    // Drawing behavior (custom toggle logic)
+            checkbox.addEventListener("mousedown", (e) => {
+                e.preventDefault(); // prevent native checkbox toggle
+                isMouseDown = true;
+                drawValue = !checkbox.checked;
+                checkbox.checked = drawValue; // manual toggle
+            });
+
+            // Prevent native click toggle completely
+            checkbox.addEventListener("click", (e) => {
+                e.preventDefault();
+            });
+
+            checkbox.addEventListener("mouseover", () => {
+                if (isMouseDown) {
+                    checkbox.checked = drawValue;
+                }
+            });
+
+            grid.appendChild(checkbox);
+        }
+
+        document.body.addEventListener("mouseup", () => {
+            isMouseDown = false;
+        });
+
+        function buildMatrix() {
+            const checkboxes = document.querySelectorAll(".grid input");
+            let matrix = [];
+
+            for (let row = 0; row < GRID_SIZE; row++) {
+                let rowArray = [];
+                for (let col = 0; col < GRID_SIZE; col++) {
+                    const index = row * GRID_SIZE + col;
+                    rowArray.push(checkboxes[index].checked ? 1 : 0);
+                }
+                matrix.push(rowArray);
+            }
+
+            return matrix;
+        }
+
+        function generateMatrix() {
+            const matrix = buildMatrix();
+
+            // Use template literal to avoid unescaped line break errors
+            const godotText = `var level = [
+${matrix
+    .map(row => `    [${row.join(", ")}]`)
+    .join(",\n")}
+]`;
+
+            document.getElementById("output").value = godotText;
+        }
+
+        function clearGrid() {
+            document.querySelectorAll(".grid input").forEach(cb => cb.checked = false);
+            document.getElementById("output").value = "";
+        }
+
+        function markAll() {
+            document.querySelectorAll(".grid input").forEach(cb => cb.checked = true);
+        }
+
+        // =====================
+        // Basic Runtime Tests
+        // =====================
+        function runTests() {
+            // Test 1: Empty grid should produce all zeros
+            clearGrid();
+            let matrix = buildMatrix();
+            console.assert(matrix.length === GRID_SIZE, "Matrix should have 10 rows");
+            console.assert(matrix[0].length === GRID_SIZE, "Each row should have 10 columns");
+            console.assert(matrix.flat().every(v => v === 0), "All values should be 0 after clear");
+
+            // Test 2: Mark all should produce all ones
+            markAll();
+            matrix = buildMatrix();
+            console.assert(matrix.flat().every(v => v === 1), "All values should be 1 after markAll");
+
+            // Reset after tests
+            clearGrid();
+
+            console.log("All basic tests passed.");
+        }
+
+        runTests();
+    </script>
+
+</body>
+</html>
