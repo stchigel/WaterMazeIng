@@ -83,6 +83,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Timer" type="Timer" parent="." unique_id=795962182]
+one_shot = true
 
 [node name="Meta" type="Area2D" parent="." unique_id=1675497596]
 
@@ -101,6 +102,28 @@ texture = ExtResource("8_lx5th")
 position = Vector2(324.5, 999)
 shape = SubResource("RectangleShape2D_drysr")
 
+[node name="Timer2" type="Timer" parent="." unique_id=1544255554]
+wait_time = 10.0
+one_shot = true
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=8393051]
+offset_left = 299.0
+offset_top = 40.0
+offset_right = 364.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 50
+text = "##"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AguaRecibida" type="ProgressBar" parent="." unique_id=30591719]
+offset_left = 451.0
+offset_top = 986.0
+offset_right = 635.0
+offset_bottom = 1013.0
+
 [connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="Play" to="waterGen" method="_on_play_pressed"]
 [connection signal="timeout" from="Timer" to="waterGen" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Meta" to="waterGen" method="_on_meta_body_entered"]
+[connection signal="timeout" from="Timer2" to="waterGen" method="_on_timer_2_timeout"]

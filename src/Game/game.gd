@@ -4,7 +4,7 @@ extends Node2D
 @onready var anchor := $GridMiddle
 var pointer: bool = true
 var attrForce: float = 500
-var cantAguaPorSegundo = 5
+var cantAguaPorSegundo = 25
 
 var id: int
 var maxCambios: int
@@ -42,7 +42,9 @@ const CELL_SIZE := 60
 
 func _ready():
 	asignar_variables()
+	$CountdownLabel.visible = false
 	$Reiniciar.disabled=true
+	$AguaRecibida.max_value = Global.nivelData.cantAgua*cantAguaPorSegundo
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	$Timer.wait_time=nivelData.cantAgua
@@ -64,6 +66,10 @@ func generar_grilla():
 func _on_reiniciar_pressed() -> void:
 	$Reiniciar.disabled=true
 	$Play.disabled = false
+	$CountdownLabel.visible = false
+	$Timer2.stop()
+	aguaAcumulada=0
+	$AguaRecibida.value = 0
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	for child in anchor.get_children():
@@ -71,10 +77,19 @@ func _on_reiniciar_pressed() -> void:
 	$waterGen.clear_water()
 	generar_grilla()
 
+func _process(delta: float) -> void:
+	if $"Timer2".time_left > 0:
+		$"CountdownLabel".text = str(int(ceil($"Timer2".time_left)))
+
 func acumular_agua():
 	aguaAcumulada+=1
+	$AguaRecibida.value += 1
 	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo):
-		for child in anchor.get_children():
-			child.queue_free()
-		$waterGen.clear_water()
-		get_tree().change_scene_to_file("res://src/Endscreen/endscreen.tscn")
+		call_deferred("_finalizar")
+		#Acá usé call_deferred porque me salia error
+
+func _finalizar():
+	for child in anchor.get_children():
+		child.queue_free()
+	$waterGen.clear_water()
+	get_tree().change_scene_to_file("res://src/Endscreen/endscreen.tscn")

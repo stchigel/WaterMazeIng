@@ -1,101 +1,85 @@
 extends Node2D
-var objects: Array[Array] = []
 
-@onready var cir_shape := CircleShape2D.new()
+var objects: Array[RigidBody2D] = []
+
 @export var tex: Texture2D
 @export var spawnRad: float
 var texSize: float = 48
-@onready var attrForce: float = get_parent().attrForce
+var attrForce: float = 0.0
 var distanciaAguas = 6480
 var dropping = false
-var area_rid: RID
 
-func _ready() -> void:
+
+func create_object(pos: Vector2) -> void:
+	var body := RigidBody2D.new()
+	body.mass = 0.1
+	body.lock_rotation = true
+	body.can_sleep = false
+	body.collision_layer = 1
+	body.collision_mask = 1
+
+	var shape := CollisionShape2D.new()
+	var cir_shape := CircleShape2D.new()
 	cir_shape.radius = 8
 	cir_shape.custom_solver_bias = 0.1
-	var area_rid = $"../Meta".get_rid()
-	PhysicsServer2D.area_set_monitor_callback(area_rid, Callable(self, "_area_callback"))
-	
+	shape.shape = cir_shape
+	body.add_child(shape)
 
-func _area_callback(status, body_rid, instance_id, body_shape_idx, area_shape_idx):
-	if status == PhysicsServer2D.AREA_BODY_ADDED:
-		if instance_id == 0:
-			call_deferred("remove_object_by_rid", body_rid)
-			get_parent().acumular_agua()
+	var mat := PhysicsMaterial.new()
+	mat.friction = 0.1
+	body.physics_material_override = mat
 
-func create_object(pos: Vector2):
-	var ps := PhysicsServer2D
-	var object = ps.body_create()
-	ps.body_set_space(object, get_world_2d().space)
-	ps.body_add_shape(object, cir_shape)
-	ps.body_set_param(object, ps.BODY_PARAM_FRICTION, 0.1)
-	ps.body_set_param(object, ps.BODY_PARAM_MASS, 0.1)
-	ps.body_set_mode(object, ps.BODY_MODE_RIGID_LINEAR)
-	var trans := Transform2D(0, pos)
-	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, trans)
+	var sprite := Sprite2D.new()
+	sprite.texture = tex
+	if tex:
+		sprite.scale = Vector2(texSize / tex.get_width(), texSize / tex.get_height())
+	body.add_child(sprite)
 
-	var rs := RenderingServer
-	var img := rs.canvas_item_create()
-	rs.canvas_item_set_parent(img, get_canvas_item())
-	rs.canvas_item_add_texture_rect(img, Rect2(texSize/-2, texSize/-2, texSize, texSize), tex)
-	rs.canvas_item_set_transform(img, trans)
-	
-	ps.body_set_collision_layer(object, 1)
-	ps.body_set_collision_mask(object, 1)
+	add_child(body)
+	body.global_position = pos
+	objects.append(body)
 
-	objects.append([object, img])
-
-func _physics_process(delta):
-	var index: int = 0
-	for pair in objects:
-		var object: RID = pair[0]
-		var img: RID = pair[1]
-		var trans: Transform2D = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
-		trans.origin -= global_position
-		if trans.origin.y > distanciaAguas - global_position.y:
-			objects.remove_at(index)
-			PhysicsServer2D.free_rid(object)
-			RenderingServer.free_rid(img)
+func _physics_process(_delta: float) -> void:
+	var i := objects.size() - 1
+	while i >= 0:
+		var body: RigidBody2D = objects[i]
+		if body.global_position.y > distanciaAguas:
+			body.queue_free()
+			objects.remove_at(i)
 		else:
-			RenderingServer.canvas_item_set_transform(img, trans)
-			
-			PhysicsServer2D.body_set_constant_force(object, Vector2.ZERO)
-		index += 1
+			body.constant_force = Vector2.ZERO
+		i -= 1
 
-func _exit_tree():
-	for pair in objects:
-		var object: RID = pair[0]
-		var img: RID = pair[1]
-		PhysicsServer2D.free_rid(object)
-		RenderingServer.free_rid(img)
+func _exit_tree() -> void:
+	clear_water()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	attrForce = get_parent().attrForce
 	if dropping:
 		create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
 
 func _on_play_pressed() -> void:
-	dropping=true
+	dropping = true
 	$"../Play".disabled = true
 	$"../Timer".start()
+	$"../Timer2".start()
+	$"../CountdownLabel".visible = true
 
 func _on_timer_timeout() -> void:
-	dropping=false
+	dropping = false
 	
-func clear_water():
-	for pair in objects:
-		var object: RID = pair[0]
-		var img: RID = pair[1]
-		PhysicsServer2D.free_rid(object)
-		RenderingServer.free_rid(img)
+
+func _on_timer_2_timeout() -> void:
+	$"../Reiniciar".disabled = false
+	$"../CountdownLabel".visible = false
+
+func clear_water() -> void:
+	for body in objects:
+		body.queue_free()
 	objects.clear()
 
-func remove_object_by_rid(body_rid: RID) -> void:
-	for i in range(objects.size()):
-		if objects[i][0] == body_rid:
-			var object: RID = objects[i][0]
-			var img: RID = objects[i][1]
-			objects.remove_at(i)
-			PhysicsServer2D.free_rid(object)
-			RenderingServer.free_rid(img)
-			return
+func _on_meta_body_entered(body: Node2D) -> void:
+	if body is RigidBody2D and objects.has(body):
+		objects.erase(body)
+		body.queue_free()
+		get_parent().acumular_agua()
