@@ -44,11 +44,13 @@ const GRID_SIZE := 10
 const CELL_SIZE := 60
 
 func _ready():
+	#Global.aguaEnNivel=0
 	Engine.physics_ticks_per_second = cantFPS
 	asignar_variables()
+	Global.aguaEnNivel=cantAgua*cantAguaPorSegundo
 	$CountdownLabel.visible = false
 	$Reiniciar.disabled=true
-	$AguaRecibida.max_value = cantAgua*cantAguaPorSegundo*cantAguaParaGanar
+	$AguaRecibida.max_value = Global.aguaEnNivel*cantAguaParaGanar
 	cambiosActual=maxCambios
 	$Cambios.text=str(cambiosActual)
 	$Timer.wait_time=nivelData.cantAgua
@@ -89,13 +91,14 @@ func _on_reiniciar_pressed() -> void:
 	generar_grilla()
 
 func _process(delta: float) -> void:
+	$AguaRecibida.max_value = Global.aguaEnNivel*cantAguaParaGanar
 	if $"Timer2".time_left > 0:
 		$"CountdownLabel".text = str(int(ceil($"Timer2".time_left)))
 
 func acumular_agua():
 	aguaAcumulada+=1
 	$AguaRecibida.value += 1
-	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo*cantAguaParaGanar):
+	if(aguaAcumulada>=Global.aguaEnNivel*cantAguaParaGanar):
 		await $Meta/Cuppy.pop()
 		call_deferred("_finalizar")
 	else:

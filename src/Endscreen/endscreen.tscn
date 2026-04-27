@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://hb126p1e81yr" path="res://assets/ka1.ttf" id="3_i5rss"]
 [ext_resource type="FontFile" uid="uid://b1qs8u7abc0si" path="res://assets/upheaval-tt-brk.upheaval-tt-brk.ttf" id="3_l04w5"]
 [ext_resource type="Texture2D" uid="uid://b5jd2t0gidip4" path="res://assets/botones/home.png" id="5_utjj8"]
+[ext_resource type="Texture2D" uid="uid://dwvyck7y8by41" path="res://assets/back-ganar.png" id="7_43agf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43agf"]
 
@@ -22,6 +23,18 @@ script = ExtResource("1_igkh6")
 position = Vector2(1213, 606.5)
 scale = Vector2(1.2635417, 1.2635417)
 texture = ExtResource("2_fwm2j")
+
+[node name="BackGanar" type="Sprite2D" parent="." unique_id=678746330]
+position = Vector2(325.12503, 607.25684)
+scale = Vector2(5.0368214, 5.0368214)
+texture = ExtResource("7_43agf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=846359158]
+layout_mode = 0
+offset_top = -100.0
+offset_right = 765.0
+offset_bottom = 1377.0
+color = Color(0, 0, 0, 0.60784316)
 
 [node name="Ganaste2" type="Label" parent="." unique_id=357619010]
 layout_mode = 0

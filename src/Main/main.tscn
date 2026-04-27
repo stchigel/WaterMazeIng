@@ -7,12 +7,30 @@
 [ext_resource type="Texture2D" uid="uid://d3q2jcnxm6iaw" path="res://assets/botones/sound-on.png" id="5_koglj"]
 [ext_resource type="Texture2D" uid="uid://eup880wg3ftb" path="res://assets/rebirth-token.png" id="5_ljg8q"]
 [ext_resource type="FontFile" uid="uid://b1qs8u7abc0si" path="res://assets/upheaval-tt-brk.upheaval-tt-brk.ttf" id="6_81s5k"]
+[ext_resource type="Texture2D" uid="uid://d3lf3srmubuqa" path="res://assets/botones/tutorial.png" id="7_6atdx"]
+[ext_resource type="Texture2D" uid="uid://e3cygsqyquo3" path="res://assets/botones/creditos.png" id="8_88d5u"]
+[ext_resource type="Texture2D" uid="uid://bmqbaefviq21k" path="res://assets/botones/cerrar-1.png" id="10_88d5u"]
+[ext_resource type="Script" uid="uid://dti15i8nwcvld" path="res://src/Main/tutorial_panel.gd" id="10_l2jeb"]
+[ext_resource type="Texture2D" uid="uid://cc20ue0mnbdwd" path="res://assets/botones/flecha.png" id="11_u0ng0"]
+[ext_resource type="Texture2D" uid="uid://bvxv0pxrds16e" path="res://assets/tutorial/juego-tutorial.png" id="12_887hy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_koglj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81s5k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ljg8q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6atdx"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.92156863)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
 
 [node name="Main" type="Control" unique_id=881347497]
 layout_mode = 3
@@ -256,15 +274,55 @@ icon = ExtResource("5_koglj")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Tutorial" type="Button" parent="." unique_id=1108750922]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 1136.0
+offset_right = 64.0
+offset_bottom = 1176.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("7_6atdx")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Creditos" type="Button" parent="." unique_id=1461686161]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 1136.0
+offset_right = 128.0
+offset_bottom = 1176.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("8_88d5u")
+icon_alignment = 1
+expand_icon = true
+
 [node name="PreguntaFondo" type="ColorRect" parent="." unique_id=466479242]
-visible = false
 layout_mode = 0
 offset_right = 650.0
 offset_bottom = 1216.0
 color = Color(0, 0, 0, 0.5686275)
 
 [node name="VolAEmp" type="Label" parent="." unique_id=1042426254]
-visible = false
 layout_mode = 0
 offset_top = 256.0
 offset_right = 650.0
@@ -278,7 +336,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Si" type="Button" parent="." unique_id=1330494519]
-visible = false
 layout_mode = 0
 offset_left = 280.0
 offset_top = 472.0
@@ -299,6 +356,157 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ljg8q")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ljg8q")
 text = "Si"
 
+[node name="TutorialPanel" type="Panel" parent="." unique_id=1176723506]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -526.1538
+offset_right = 285.0
+offset_bottom = 526.1538
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6atdx")
+script = ExtResource("10_l2jeb")
+
+[node name="Cerrar" type="Button" parent="TutorialPanel" unique_id=664025853]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 14.153809
+offset_right = 552.0
+offset_bottom = 54.15381
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("10_88d5u")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Ir" type="Button" parent="TutorialPanel" unique_id=1025402243]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 950.1538
+offset_right = 552.0
+offset_bottom = 1014.1538
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("11_u0ng0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Volver" type="Button" parent="TutorialPanel" unique_id=14663243]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 1014.1538
+offset_right = 144.0
+offset_bottom = 1078.1538
+rotation = 3.1415927
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("11_u0ng0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Texto" type="Label" parent="TutorialPanel" unique_id=1903707151]
+layout_mode = 0
+offset_top = 62.15381
+offset_right = 570.0
+offset_bottom = 366.1538
+theme_override_fonts/font = ExtResource("6_81s5k")
+theme_override_font_sizes/font_size = 30
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elementum lorem, id vestibulum enim scelerisque nec. Quisque laoreet augue felis, nec euismod augue dictum in. Aenean pharetra odio elit, sit amet mattis sem egestas eu. "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Imagen" type="Sprite2D" parent="TutorialPanel" unique_id=331693144]
+position = Vector2(284, 618.86096)
+scale = Vector2(1.3038673, 1.3038673)
+texture = ExtResource("12_887hy")
+
+[node name="CreditosPanel" type="Panel" parent="." unique_id=1409165205]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = 280.0
+offset_right = 285.0
+offset_bottom = 526.1538
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6atdx")
+
+[node name="Cerrar" type="Button" parent="CreditosPanel" unique_id=1910022710]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 14.153809
+offset_right = 552.0
+offset_bottom = 54.15381
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("10_88d5u")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Texto" type="Label" parent="CreditosPanel" unique_id=2114880714]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 544.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("6_81s5k")
+theme_override_font_sizes/font_size = 20
+text = "creditos:
+iconos: Pixel Solid - by Freepik
+Cuppy: Cup-Chan - The spriters Resource
+Base del codigo de agua: Fluid-water physics 2D - Kaboom__57 (Sobre esto se itero mucho)
+
+[insertar easter egg aqui]"
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="pressed" from="Botones/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Botones/Level 2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Botones/Level 3" to="." method="_on_level_3_pressed"]
@@ -306,4 +514,10 @@ text = "Si"
 [connection signal="pressed" from="Botones/Level 5" to="." method="_on_level_5_pressed"]
 [connection signal="pressed" from="Botones/Level 6" to="." method="_on_level_6_pressed"]
 [connection signal="pressed" from="Sonido" to="." method="_on_sonido_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="Si" to="." method="_on_si_pressed"]
+[connection signal="pressed" from="TutorialPanel/Cerrar" to="TutorialPanel" method="_on_cerrar_pressed"]
+[connection signal="pressed" from="TutorialPanel/Ir" to="TutorialPanel" method="_on_ir_pressed"]
+[connection signal="pressed" from="TutorialPanel/Volver" to="TutorialPanel" method="_on_volver_pressed"]
+[connection signal="pressed" from="CreditosPanel/Cerrar" to="." method="_on_cerrar_pressed"]

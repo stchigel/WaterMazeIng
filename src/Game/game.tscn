@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://hb126p1e81yr" path="res://assets/ka1.ttf" id="13_muykf"]
 [ext_resource type="AudioStream" uid="uid://dvajqt3as1l2o" path="res://assets/sonidos/agua-sfx.mp3" id="14_x8pff"]
 [ext_resource type="Texture2D" uid="uid://buigfsih8w04x" path="res://assets/progressbar/circulo-fill-3.png" id="16_aiv24"]
+[ext_resource type="Texture2D" uid="uid://cc20ue0mnbdwd" path="res://assets/botones/flecha.png" id="18_nwlnk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr6s2"]
 
@@ -221,11 +222,13 @@ script = ExtResource("12_ysswf")
 position = Vector2(324.5, 999)
 shape = SubResource("RectangleShape2D_drysr")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Afuera" unique_id=197429542]
+[node name="Noclip" type="Area2D" parent="." unique_id=516106766]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Noclip" unique_id=197429542]
 position = Vector2(41.5, 288)
 shape = SubResource("RectangleShape2D_0qd4d")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Afuera" unique_id=483028541]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Noclip" unique_id=483028541]
 position = Vector2(188, 288)
 shape = SubResource("RectangleShape2D_0qd4d")
 
@@ -266,6 +269,18 @@ stream = ExtResource("13_4te78")
 [node name="SonidoAgua" type="AudioStreamPlayer" parent="." unique_id=336196737]
 stream = ExtResource("14_x8pff")
 
+[node name="Flecha" type="Sprite2D" parent="." unique_id=1037573917]
+position = Vector2(115, 280)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+texture = ExtResource("18_nwlnk")
+
+[node name="ColorRect" type="ColorRect" parent="Flecha" unique_id=850050999]
+offset_left = -12.991105
+offset_top = -3.061283
+offset_right = 2.736846
+offset_bottom = 2.9453506
+
 [connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="Play" to="waterGen" method="_on_play_pressed"]
 [connection signal="pressed" from="Play2" to="." method="_on_play_2_pressed"]
@@ -273,4 +288,5 @@ stream = ExtResource("14_x8pff")
 [connection signal="body_entered" from="Meta" to="waterGen" method="_on_meta_body_entered"]
 [connection signal="body_entered" from="Meta" to="Meta/Cuppy" method="_on_meta_body_entered"]
 [connection signal="body_entered" from="Afuera" to="waterGen" method="_on_afuera_body_entered"]
+[connection signal="body_entered" from="Noclip" to="waterGen" method="_on_noclip_body_entered"]
 [connection signal="timeout" from="Timer2" to="waterGen" method="_on_timer_2_timeout"]
