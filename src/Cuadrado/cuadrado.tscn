@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://co04ktpk0faq1"]
 
 [ext_resource type="Script" uid="uid://cklsgxc23d0wr" path="res://src/Cuadrado/cuadrado.gd" id="1_cusas"]
-[ext_resource type="Texture2D" uid="uid://dksgwwbd2u740" path="res://assets/ladrillo.webp" id="2_bxtca"]
-[ext_resource type="Texture2D" uid="uid://5kw7ght5etpd" path="res://assets/ladrillo2.webp" id="3_enu3y"]
+[ext_resource type="Texture2D" uid="uid://cj38vhvom5ir3" path="res://assets/lleno-tierra.png" id="2_bxtca"]
+[ext_resource type="AudioStream" uid="uid://eapd7alebnl8" path="res://assets/sonidos/tierra/JAWDIG01.wav" id="2_pbntf"]
+[ext_resource type="Texture2D" uid="uid://3m2vl4625pk6" path="res://assets/vacio-tierra-2.png" id="3_bxtca"]
+[ext_resource type="AudioStream" uid="uid://5hxtpukmxifg" path="res://assets/sonidos/tierra/JAWDIG02.wav" id="3_cocdo"]
+[ext_resource type="AudioStream" uid="uid://ducbq6rogqllv" path="res://assets/sonidos/tierra/JAWDIG03.wav" id="4_kwnyc"]
+[ext_resource type="AudioStream" uid="uid://4fav4hs6w4wi" path="res://assets/sonidos/tierra/JAWDIG04.wav" id="5_oaqik"]
+[ext_resource type="AudioStream" uid="uid://b6p4q4eskqhvw" path="res://assets/sonidos/tierra/JAWDIG05.wav" id="6_e6vt3"]
+[ext_resource type="AudioStream" uid="uid://fvojah7wxal3" path="res://assets/sonidos/tierra/JAWDIG06.wav" id="7_b4tu0"]
+[ext_resource type="AudioStream" uid="uid://ddbi62vtn41fa" path="res://assets/sonidos/tierra/JAWDIG07.wav" id="8_w3qlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytqfn"]
 size = Vector2(60, 60)
@@ -13,6 +20,7 @@ size = Vector2(60, 60)
 [node name="Cuadrado" type="StaticBody2D" unique_id=480825724]
 script = ExtResource("1_cusas")
 activo = true
+sonidos = Array[AudioStream]([ExtResource("2_pbntf"), ExtResource("3_cocdo"), ExtResource("4_kwnyc"), ExtResource("5_oaqik"), ExtResource("6_e6vt3"), ExtResource("7_b4tu0"), ExtResource("8_w3qlc")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1532873348]
 position = Vector2(29.999998, 29.999998)
@@ -20,14 +28,14 @@ shape = SubResource("RectangleShape2D_ytqfn")
 
 [node name="Lleno" type="Sprite2D" parent="." unique_id=1929518520]
 position = Vector2(29.999998, 29.999998)
-scale = Vector2(0.37499997, 0.37499997)
+scale = Vector2(3.7499998, 3.7499998)
 texture = ExtResource("2_bxtca")
 
 [node name="Vacio" type="Sprite2D" parent="." unique_id=216537424]
 z_index = -5
 position = Vector2(29.999998, 29.999998)
-scale = Vector2(0.375, 0.37499997)
-texture = ExtResource("3_enu3y")
+scale = Vector2(3.75, 3.7499998)
+texture = ExtResource("3_bxtca")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=128857296]
 

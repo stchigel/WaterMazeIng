@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq88qcuevoxk3"
-path="res://.godot/imported/ladrillo3.webp-1f4ba68359548639fa08dce59514f988.ctex"
+uid="uid://dfpf3gv0brt8x"
+path="res://.godot/imported/fondo-1.jpg-10e3f8ae519ae3ab7844256b153edea8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ladrillo3.webp"
-dest_files=["res://.godot/imported/ladrillo3.webp-1f4ba68359548639fa08dce59514f988.ctex"]
+source_file="res://assets/fondo-1.jpg"
+dest_files=["res://.godot/imported/fondo-1.jpg-10e3f8ae519ae3ab7844256b153edea8.ctex"]
 
 [params]
 

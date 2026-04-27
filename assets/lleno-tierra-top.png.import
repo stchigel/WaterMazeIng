@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxy3u83bmjcta"
-path="res://.godot/imported/waterdrop.png-a34d5a11458b2a84d3549919103272ec.ctex"
+uid="uid://dpd4cvwq1e6lc"
+path="res://.godot/imported/lleno-tierra-top.png-76ae1f59dbd879968381532e568597bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/waterdrop.png"
-dest_files=["res://.godot/imported/waterdrop.png-a34d5a11458b2a84d3549919103272ec.ctex"]
+source_file="res://assets/lleno-tierra-top.png"
+dest_files=["res://.godot/imported/lleno-tierra-top.png-76ae1f59dbd879968381532e568597bf.ctex"]
 
 [params]
 

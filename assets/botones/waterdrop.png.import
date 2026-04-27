@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k48ld5nua6t2"
-path="res://.godot/imported/restart.png-e3341f5ab3201ffaa3fc76965a1ab56e.ctex"
+uid="uid://bphxlp040df3f"
+path="res://.godot/imported/waterdrop.png-b13d9209022f904044f796e97c022e41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/restart.png"
-dest_files=["res://.godot/imported/restart.png-e3341f5ab3201ffaa3fc76965a1ab56e.ctex"]
+source_file="res://assets/botones/waterdrop.png"
+dest_files=["res://.godot/imported/waterdrop.png-b13d9209022f904044f796e97c022e41.ctex"]
 
 [params]
 

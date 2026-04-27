@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://bi8e4v3fh7f8g"]
 
 [ext_resource type="Script" uid="uid://dkv5aadhy4s6s" path="res://src/Main/main.gd" id="1_k4pwg"]
+[ext_resource type="Texture2D" uid="uid://dfpf3gv0brt8x" path="res://assets/fondo-1.jpg" id="2_umts7"]
 [ext_resource type="Texture2D" uid="uid://7oex8u6186kv" path="res://assets/watercoin.png" id="2_wkb84"]
+[ext_resource type="FontFile" uid="uid://hb126p1e81yr" path="res://assets/ka1.ttf" id="3_xsymy"]
+[ext_resource type="Texture2D" uid="uid://d3q2jcnxm6iaw" path="res://assets/botones/sound-on.png" id="5_koglj"]
+[ext_resource type="Texture2D" uid="uid://eup880wg3ftb" path="res://assets/rebirth-token.png" id="5_ljg8q"]
+[ext_resource type="FontFile" uid="uid://b1qs8u7abc0si" path="res://assets/upheaval-tt-brk.upheaval-tt-brk.ttf" id="6_81s5k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_koglj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81s5k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ljg8q"]
 
 [node name="Main" type="Control" unique_id=881347497]
 layout_mode = 3
@@ -12,64 +23,163 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k4pwg")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=809296494]
-layout_mode = 0
-offset_right = 650.0
-offset_bottom = 1200.0
-color = Color(0, 0.12803975, 0.25299576, 1)
+[node name="Fondo1" type="Sprite2D" parent="." unique_id=112198965]
+position = Vector2(1213, 606.5)
+scale = Vector2(1.2635417, 1.2635417)
+texture = ExtResource("2_umts7")
 
-[node name="Level 1" type="Button" parent="." unique_id=180210059]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2076160398]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 146.0
-offset_right = 133.0
-offset_bottom = 229.0
+offset_left = 265.0
+offset_top = 259.0
+offset_right = 301.0
+offset_bottom = 295.0
+color = Color(0.93916714, 0.84344, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=522001189]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 319.0
+offset_right = 261.3333
+offset_bottom = 355.0
+scale = Vector2(3, 1)
+color = Color(0.93916714, 0.84344, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1981771918]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 379.0
+offset_right = 364.0
+offset_bottom = 415.0
+scale = Vector2(3, 1)
+color = Color(0.93916714, 0.84344, 0, 1)
+
+[node name="Botones" type="Node" parent="." unique_id=512802776]
+
+[node name="Level 1" type="Button" parent="Botones" unique_id=180210059]
+offset_left = 19.0
+offset_top = 675.0
+offset_right = 100.0
+offset_bottom = 758.0
+rotation = 0.17240192
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "1"
 
-[node name="Level 2" type="Button" parent="." unique_id=817883813]
-layout_mode = 0
-offset_left = 145.0
-offset_top = 189.0
-offset_right = 226.0
-offset_bottom = 272.0
+[node name="Level 2" type="Button" parent="Botones" unique_id=817883813]
+offset_left = 117.00001
+offset_top = 696.00006
+offset_right = 198.00002
+offset_bottom = 779.00006
+rotation = -0.28965515
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "2"
 
-[node name="Level 3" type="Button" parent="." unique_id=2004122673]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 157.0
-offset_right = 321.0
-offset_bottom = 240.0
+[node name="Level 3" type="Button" parent="Botones" unique_id=2004122673]
+offset_left = 231.00003
+offset_top = 654.00006
+offset_right = 312.00003
+offset_bottom = 737.00006
+rotation = -0.20780948
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "3"
 
-[node name="Level 4" type="Button" parent="." unique_id=1456321263]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 114.0
-offset_right = 421.0
-offset_bottom = 197.0
+[node name="Level 4" type="Button" parent="Botones" unique_id=1456321263]
+offset_left = 370.00003
+offset_top = 645.00006
+offset_right = 451.00003
+offset_bottom = 728.00006
+rotation = 0.22403479
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "4"
 
-[node name="Level 5" type="Button" parent="." unique_id=1923441511]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 168.0
-offset_right = 521.0
-offset_bottom = 251.0
+[node name="Level 5" type="Button" parent="Botones" unique_id=1923441511]
+offset_left = 487.0
+offset_top = 689.0
+offset_right = 568.0
+offset_bottom = 772.0
+rotation = 0.60234296
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "5"
 
-[node name="Level 6" type="Button" parent="." unique_id=56672797]
-layout_mode = 0
-offset_left = 532.0
-offset_top = 222.0
-offset_right = 613.0
-offset_bottom = 305.0
+[node name="Level 6" type="Button" parent="Botones" unique_id=56672797]
+offset_left = 560.00006
+offset_top = 766.00006
+offset_right = 641.00006
+offset_bottom = 849.00006
+rotation = 0.26444772
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_koglj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_koglj")
 text = "6"
 
 [node name="Label" type="Label" parent="." unique_id=413310396]
@@ -78,8 +188,10 @@ offset_left = 65.0
 offset_top = 7.0
 offset_right = 125.0
 offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("3_xsymy")
 theme_override_font_sizes/font_size = 35
 text = "000"
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1584174661]
 layout_mode = 0
@@ -90,6 +202,108 @@ offset_bottom = 53.0
 texture = ExtResource("2_wkb84")
 expand_mode = 1
 
-[connection signal="pressed" from="Level 1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Level 2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Level 3" to="." method="_on_level_3_pressed"]
+[node name="Label3" type="Label" parent="." unique_id=365912370]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 64.0
+offset_right = 157.0
+offset_bottom = 113.0
+theme_override_fonts/font = ExtResource("3_xsymy")
+theme_override_font_sizes/font_size = 35
+text = "000"
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1325019641]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 65.0
+offset_right = 56.0
+offset_bottom = 110.0
+texture = ExtResource("5_ljg8q")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="." unique_id=620080070]
+layout_mode = 0
+offset_top = 248.0
+offset_right = 650.0
+offset_bottom = 305.0
+theme_override_fonts/font = ExtResource("3_xsymy")
+theme_override_font_sizes/font_size = 50
+text = "Water
+Maze   
+        Ing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sonido" type="Button" parent="." unique_id=286380603]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 16.0
+offset_right = 640.0
+offset_bottom = 56.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_81s5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81s5k")
+icon = ExtResource("5_koglj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PreguntaFondo" type="ColorRect" parent="." unique_id=466479242]
+visible = false
+layout_mode = 0
+offset_right = 650.0
+offset_bottom = 1216.0
+color = Color(0, 0, 0, 0.5686275)
+
+[node name="VolAEmp" type="Label" parent="." unique_id=1042426254]
+visible = false
+layout_mode = 0
+offset_top = 256.0
+offset_right = 650.0
+offset_bottom = 415.0
+theme_override_fonts/font = ExtResource("6_81s5k")
+theme_override_font_sizes/font_size = 50
+text = "¿Volver
+a
+empezar?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Si" type="Button" parent="." unique_id=1330494519]
+visible = false
+layout_mode = 0
+offset_left = 280.0
+offset_top = 472.0
+offset_right = 367.99997
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("6_81s5k")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ljg8q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ljg8q")
+text = "Si"
+
+[connection signal="pressed" from="Botones/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Botones/Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Botones/Level 3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Botones/Level 4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="Botones/Level 5" to="." method="_on_level_5_pressed"]
+[connection signal="pressed" from="Botones/Level 6" to="." method="_on_level_6_pressed"]
+[connection signal="pressed" from="Sonido" to="." method="_on_sonido_pressed"]
+[connection signal="pressed" from="Si" to="." method="_on_si_pressed"]

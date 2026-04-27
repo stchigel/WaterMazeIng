@@ -4,21 +4,21 @@ var objects: Array[RigidBody2D] = []
 
 @export var tex: Texture2D
 @export var spawnRad: float
-var texSize: float = 48
+var texSize: float = 36
 var attrForce: float = 0.0
 var distanciaAguas = 6480
 var dropping = false
-var spawn_rate = 60
-var accumulator = 0.0
+var _tick = false
 
 
 func create_object(pos: Vector2) -> void:
 	var body := RigidBody2D.new()
-	body.mass = 0.1
+	body.mass = 0.8
 	body.lock_rotation = true
 	body.can_sleep = false
 	body.collision_layer = 1
 	body.collision_mask = 1
+	body.continuous_cd = RigidBody2D.CCD_MODE_CAST_SHAPE
 
 	var shape := CollisionShape2D.new()
 	var cir_shape := CircleShape2D.new()
@@ -28,7 +28,8 @@ func create_object(pos: Vector2) -> void:
 	body.add_child(shape)
 
 	var mat := PhysicsMaterial.new()
-	mat.friction = 0.1
+	mat.friction = 0.05
+	mat.bounce = 0.02
 	body.physics_material_override = mat
 
 	var sprite := Sprite2D.new()
@@ -51,17 +52,12 @@ func _physics_process(_delta: float) -> void:
 		else:
 			body.constant_force = Vector2.ZERO
 		i -= 1
+	_tick = !_tick
+	if _tick && dropping:
+		create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
 
 func _exit_tree() -> void:
 	clear_water()
-
-func _process(delta: float) -> void:
-	attrForce = get_parent().attrForce
-	if dropping:
-		accumulator += delta * spawn_rate
-		while accumulator >= 1.0:
-			create_object(global_position + Vector2(randf() - 0.5, randf() - 0.5).normalized() * spawnRad * randf())
-			accumulator -= 1.0
 
 func _on_play_pressed() -> void:
 	dropping = true
@@ -69,10 +65,11 @@ func _on_play_pressed() -> void:
 	$"../Timer".start()
 	$"../Timer2".start()
 	$"../CountdownLabel".visible = true
+	$"../SonidoAgua".play()
 
 func _on_timer_timeout() -> void:
 	dropping = false
-	
+	$"../SonidoAgua".stop()
 
 func _on_timer_2_timeout() -> void:
 	$"../Reiniciar".disabled = false

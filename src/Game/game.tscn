@@ -1,19 +1,24 @@
 [gd_scene format=3 uid="uid://qrwsivekumip"]
 
 [ext_resource type="Script" uid="uid://crgsafuguldq1" path="res://scripts/waterGenerator.gd" id="1_60cvd"]
-[ext_resource type="Shader" uid="uid://bkhw3uhyhtv6g" path="res://shaders/waterEffect.gdshader" id="1_k6qo2"]
 [ext_resource type="Script" uid="uid://nk2kt741qrpc" path="res://src/Game/game.gd" id="1_sag4g"]
 [ext_resource type="PackedScene" uid="uid://co04ktpk0faq1" path="res://src/Cuadrado/cuadrado.tscn" id="2_7m6cs"]
-[ext_resource type="Texture2D" uid="uid://b122w26hx0xvi" path="res://assets/icon.svg" id="3_3s8ir"]
-[ext_resource type="Texture2D" uid="uid://diai7x3jo5ujg" path="res://assets/part.png" id="5_7m6cs"]
+[ext_resource type="Texture2D" uid="uid://dfpf3gv0brt8x" path="res://assets/fondo-1.jpg" id="3_4te78"]
+[ext_resource type="Texture2D" uid="uid://dj0roih3ewau7" path="res://assets/agua-top.png" id="3_ysswf"]
+[ext_resource type="Texture2D" uid="uid://dd248gg1m1uny" path="res://assets/agua.png" id="4_4te78"]
+[ext_resource type="Texture2D" uid="uid://cfjhviqxsjsny" path="res://assets/part-blue-4.png" id="7_drysr"]
+[ext_resource type="FontFile" uid="uid://b1qs8u7abc0si" path="res://assets/upheaval-tt-brk.upheaval-tt-brk.ttf" id="8_adbi8"]
 [ext_resource type="Texture2D" uid="uid://bsm37hb8cctju" path="res://assets/cup-kun.png" id="8_lx5th"]
-[ext_resource type="Texture2D" uid="uid://k48ld5nua6t2" path="res://assets/restart.png" id="9_0qd4d"]
-[ext_resource type="Texture2D" uid="uid://cxy3u83bmjcta" path="res://assets/waterdrop.png" id="10_mkl7w"]
+[ext_resource type="Texture2D" uid="uid://csx0cnhoooneg" path="res://assets/botones/cycle.png" id="8_x8pff"]
+[ext_resource type="Texture2D" uid="uid://bphxlp040df3f" path="res://assets/botones/waterdrop.png" id="9_muykf"]
+[ext_resource type="Texture2D" uid="uid://b5jd2t0gidip4" path="res://assets/botones/home.png" id="10_adbi8"]
+[ext_resource type="Script" uid="uid://dl5tqgxi32ur" path="res://src/Game/cuppy.gd" id="12_ysswf"]
+[ext_resource type="AudioStream" uid="uid://sfg12mbxarnw" path="res://assets/sonidos/gota.wav" id="13_4te78"]
+[ext_resource type="FontFile" uid="uid://hb126p1e81yr" path="res://assets/ka1.ttf" id="13_muykf"]
+[ext_resource type="AudioStream" uid="uid://dvajqt3as1l2o" path="res://assets/sonidos/agua-sfx.mp3" id="14_x8pff"]
+[ext_resource type="Texture2D" uid="uid://buigfsih8w04x" path="res://assets/progressbar/circulo-fill-3.png" id="16_aiv24"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sag4g"]
-shader = ExtResource("1_k6qo2")
-shader_parameter/TG_COLOR = Color(1, 0, 1, 1)
-shader_parameter/color_detect_threshold = 0.7
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr6s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkl7w"]
 size = Vector2(62, 15)
@@ -31,6 +36,73 @@ size = Vector2(606, 60)
 script = ExtResource("1_sag4g")
 celda_scene = ExtResource("2_7m6cs")
 
+[node name="Fondo1" type="Sprite2D" parent="." unique_id=1076932962]
+position = Vector2(1213, 606.5)
+scale = Vector2(1.2635417, 1.2635417)
+texture = ExtResource("3_4te78")
+
+[node name="Agua" type="Node2D" parent="." unique_id=132527111]
+
+[node name="AguaTop" type="Sprite2D" parent="Agua" unique_id=1563752277]
+position = Vector2(23, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop2" type="Sprite2D" parent="Agua" unique_id=1226988148]
+position = Vector2(83, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop3" type="Sprite2D" parent="Agua" unique_id=72879044]
+position = Vector2(143, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop4" type="Sprite2D" parent="Agua" unique_id=1591129528]
+position = Vector2(203, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop5" type="Sprite2D" parent="Agua" unique_id=2141740439]
+position = Vector2(263, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop6" type="Sprite2D" parent="Agua" unique_id=196107408]
+position = Vector2(323, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop7" type="Sprite2D" parent="Agua" unique_id=1695080864]
+position = Vector2(383, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop8" type="Sprite2D" parent="Agua" unique_id=1501539784]
+position = Vector2(443, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop9" type="Sprite2D" parent="Agua" unique_id=1916650333]
+position = Vector2(503, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop10" type="Sprite2D" parent="Agua" unique_id=1202690964]
+position = Vector2(563, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="AguaTop11" type="Sprite2D" parent="Agua" unique_id=957240375]
+position = Vector2(623, 1040)
+scale = Vector2(3.75, 3.75)
+texture = ExtResource("3_ysswf")
+
+[node name="Agua" type="Sprite2D" parent="Agua" unique_id=1756122949]
+position = Vector2(323, 1158)
+scale = Vector2(41.25, 7.249999)
+texture = ExtResource("4_4te78")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=473568838]
 position = Vector2(325, 600)
 limit_left = 0
@@ -38,53 +110,93 @@ limit_top = 0
 limit_right = 650
 limit_bottom = 1200
 
-[node name="waterShader" type="Sprite2D" parent="Camera2D" unique_id=1035563274]
-z_index = 1
-material = SubResource("ShaderMaterial_sag4g")
-position = Vector2(0, 4.5000024)
-scale = Vector2(5.5624995, 4.8359375)
-texture = ExtResource("3_3s8ir")
-
 [node name="waterGen" type="Marker2D" parent="." unique_id=173065101 groups=["waterGenerator"]]
 position = Vector2(115, 325)
 script = ExtResource("1_60cvd")
-tex = ExtResource("5_7m6cs")
+tex = ExtResource("7_drysr")
 spawnRad = 6.0
 
 [node name="GridMiddle" type="Marker2D" parent="." unique_id=2032995789]
 position = Vector2(325, 600)
 
 [node name="Texto" type="Label" parent="." unique_id=1564578954]
-offset_left = 22.0
-offset_top = 1148.0
-offset_right = 194.0
-offset_bottom = 1171.0
-theme_override_font_sizes/font_size = 25
-text = "CAMBIOS RESTANTES: "
+offset_left = 16.0
+offset_top = 1144.0
+offset_right = 322.0
+offset_bottom = 1192.0
+theme_override_fonts/font = ExtResource("8_adbi8")
+theme_override_font_sizes/font_size = 30
+text = "CAMBIOS RESTANTES:"
+vertical_alignment = 1
 
 [node name="Cambios" type="Label" parent="." unique_id=909930711]
-offset_left = 291.0
-offset_top = 1148.0
-offset_right = 307.0
-offset_bottom = 1183.0
+offset_left = 322.0
+offset_top = 1144.0
+offset_right = 354.0
+offset_bottom = 1192.0
+theme_override_fonts/font = ExtResource("13_muykf")
 theme_override_font_sizes/font_size = 25
-text = "#"
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Reiniciar" type="Button" parent="." unique_id=1953756339]
-offset_left = 589.0
-offset_top = 1139.0
-offset_right = 636.0
-offset_bottom = 1186.0
-icon = ExtResource("9_0qd4d")
+offset_left = 584.0
+offset_top = 1136.0
+offset_right = 631.0
+offset_bottom = 1183.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr6s2")
+icon = ExtResource("8_x8pff")
 icon_alignment = 1
 expand_icon = true
 
 [node name="Play" type="Button" parent="." unique_id=910907974]
-offset_left = 524.0
-offset_top = 1139.0
-offset_right = 571.0
-offset_bottom = 1186.0
-icon = ExtResource("10_mkl7w")
+offset_left = 520.0
+offset_top = 1136.0
+offset_right = 567.0
+offset_bottom = 1183.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr6s2")
+icon = ExtResource("9_muykf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Play2" type="Button" parent="." unique_id=2105856761]
+offset_left = 456.0
+offset_top = 1136.0
+offset_right = 503.0
+offset_bottom = 1183.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lr6s2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr6s2")
+icon = ExtResource("10_adbi8")
 icon_alignment = 1
 expand_icon = true
 
@@ -97,10 +209,11 @@ one_shot = true
 position = Vector2(538, 927.5)
 shape = SubResource("RectangleShape2D_mkl7w")
 
-[node name="Sprite2D" type="Sprite2D" parent="Meta" unique_id=1006636006]
+[node name="Cuppy" type="Sprite2D" parent="Meta" unique_id=1006636006]
 position = Vector2(546.38635, 947)
 scale = Vector2(1.2272727, 1.2272727)
 texture = ExtResource("8_lx5th")
+script = ExtResource("12_ysswf")
 
 [node name="Afuera" type="Area2D" parent="." unique_id=1442584917]
 
@@ -117,7 +230,7 @@ position = Vector2(188, 288)
 shape = SubResource("RectangleShape2D_0qd4d")
 
 [node name="Timer2" type="Timer" parent="." unique_id=1544255554]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 
 [node name="CountdownLabel" type="Label" parent="." unique_id=8393051]
@@ -125,16 +238,20 @@ offset_left = 299.0
 offset_top = 40.0
 offset_right = 364.0
 offset_bottom = 109.0
+theme_override_fonts/font = ExtResource("13_muykf")
 theme_override_font_sizes/font_size = 50
 text = "##"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AguaRecibida" type="ProgressBar" parent="." unique_id=30591719]
-offset_left = 451.0
-offset_top = 986.0
-offset_right = 635.0
-offset_bottom = 1013.0
+[node name="AguaRecibida" type="TextureProgressBar" parent="." unique_id=1007912921]
+offset_left = 496.0
+offset_top = 896.0
+offset_right = 596.0
+offset_bottom = 996.0
+fill_mode = 4
+texture_progress = ExtResource("16_aiv24")
+tint_progress = Color(0, 1, 1, 1)
 
 [node name="Cubo4" type="StaticBody2D" parent="." unique_id=903695127]
 position = Vector2(0, -60)
@@ -143,9 +260,17 @@ position = Vector2(0, -60)
 position = Vector2(328, 325.00003)
 shape = SubResource("RectangleShape2D_ysswf")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=670716384]
+stream = ExtResource("13_4te78")
+
+[node name="SonidoAgua" type="AudioStreamPlayer" parent="." unique_id=336196737]
+stream = ExtResource("14_x8pff")
+
 [connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="Play" to="waterGen" method="_on_play_pressed"]
+[connection signal="pressed" from="Play2" to="." method="_on_play_2_pressed"]
 [connection signal="timeout" from="Timer" to="waterGen" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Meta" to="waterGen" method="_on_meta_body_entered"]
+[connection signal="body_entered" from="Meta" to="Meta/Cuppy" method="_on_meta_body_entered"]
 [connection signal="body_entered" from="Afuera" to="waterGen" method="_on_afuera_body_entered"]
 [connection signal="timeout" from="Timer2" to="waterGen" method="_on_timer_2_timeout"]

@@ -2,7 +2,8 @@ extends Control
 
 func _ready() -> void:
 	$Nivel.text = str(Global.nivelData.id)
-	Global.puntos+=Global.nivelData.id*10
+	if !Global.sonido:
+		$AudioStreamPlayer.volume_db=-80
 
 
 func _on_button_pressed() -> void:

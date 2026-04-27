@@ -2,10 +2,12 @@ extends Node2D
 
 @export var celda_scene: PackedScene
 @onready var anchor := $GridMiddle
+const Lleno_top = preload("res://assets/lleno-tierra-top.png")
 var pointer: bool = true
 var attrForce: float = 500
-var cantAguaPorSegundo = 60
-var cantAguaParaGanar = 0.5
+var cantFPS = 60
+var cantAguaPorSegundo = 30
+var cantAguaParaGanar = 0.75
 
 var id: int
 var maxCambios: int
@@ -42,6 +44,7 @@ const GRID_SIZE := 10
 const CELL_SIZE := 60
 
 func _ready():
+	Engine.physics_ticks_per_second = cantFPS
 	asignar_variables()
 	$CountdownLabel.visible = false
 	$Reiniciar.disabled=true
@@ -50,6 +53,9 @@ func _ready():
 	$Cambios.text=str(cambiosActual)
 	$Timer.wait_time=nivelData.cantAgua
 	aguaAcumulada=0
+	if !Global.sonido:
+		$AudioStreamPlayer.volume_db=-80
+		$SonidoAgua.volume_db=-80
 	generar_grilla()
 
 func generar_grilla():
@@ -61,14 +67,18 @@ func generar_grilla():
 			if mapa[y][x] == 0: 
 				celda.activo = false
 			celda.position = Vector2(x * CELL_SIZE - half_size, y * CELL_SIZE - half_size)
+			if y == 0:
+				celda.get_node("Lleno").texture = Lleno_top
 			anchor.add_child(celda)
 
 
 func _on_reiniciar_pressed() -> void:
+	$waterGen.dropping=false
 	$Reiniciar.disabled=true
 	$Play.disabled = false
 	$CountdownLabel.visible = false
 	$Timer2.stop()
+	$SonidoAgua.stop()
 	aguaAcumulada=0
 	$AguaRecibida.value = 0
 	cambiosActual=maxCambios
@@ -76,7 +86,6 @@ func _on_reiniciar_pressed() -> void:
 	for child in anchor.get_children():
 		child.queue_free()
 	$waterGen.clear_water()
-	$waterGen.accumulator = 0
 	generar_grilla()
 
 func _process(delta: float) -> void:
@@ -87,11 +96,23 @@ func acumular_agua():
 	aguaAcumulada+=1
 	$AguaRecibida.value += 1
 	if(aguaAcumulada>=cantAgua*cantAguaPorSegundo*cantAguaParaGanar):
+		await $Meta/Cuppy.pop()
 		call_deferred("_finalizar")
-		#Acá usé call_deferred porque me salia error
+	else:
+		$Meta/Cuppy.pop()
 
 func _finalizar():
+	Global.ganados.append(id)
+	Global.puntos+=id*10
 	for child in anchor.get_children():
 		child.queue_free()
 	$waterGen.clear_water()
-	get_tree().change_scene_to_file("res://src/Endscreen/endscreen.tscn")
+	if is_inside_tree():
+		get_tree().change_scene_to_file.call_deferred("res://src/Endscreen/endscreen.tscn")
+
+
+func _on_play_2_pressed() -> void:
+	for child in anchor.get_children():
+		child.queue_free()
+	$waterGen.clear_water()
+	get_tree().change_scene_to_file("res://src/Main/main.tscn")

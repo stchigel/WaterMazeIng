@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5kw7ght5etpd"
-path="res://.godot/imported/ladrillo2.webp-8dbeacc2ad1905fb43742fbbf4ab84c8.ctex"
+uid="uid://d2ljcdtob423l"
+path="res://.godot/imported/circulo-fill.png-90fe96cad8f3e698dadf427150302ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ladrillo2.webp"
-dest_files=["res://.godot/imported/ladrillo2.webp-8dbeacc2ad1905fb43742fbbf4ab84c8.ctex"]
+source_file="res://assets/progressbar/circulo-fill.png"
+dest_files=["res://.godot/imported/circulo-fill.png-90fe96cad8f3e698dadf427150302ac3.ctex"]
 
 [params]
 
