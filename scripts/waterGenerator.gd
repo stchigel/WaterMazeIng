@@ -96,4 +96,4 @@ func _on_noclip_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D and objects.has(body):
 		objects.erase(body)
 		body.queue_free()
-		Global.aguaEnNivel-=1
+		#Global.aguaEnNivel-=1
